@@ -1,0 +1,24 @@
+services:
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'users-ds'
+      MYSQL_ROOT_PASSWORD: 'andreea2002!'
+    ports:
+      - "3307:3306"
+    volumes:
+      - my-db:/var/lib/mysql
+  spring-demo:
+    image: assignment1_users
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_IP=db
+      - DB_PORT=3306
+      - DB_DBNAME=users-ds
+      - DB_USER=root
+      - DB_PASSWORD=andreea2002!
+volumes:
+  my-db:
+

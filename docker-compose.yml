@@ -1,0 +1,90 @@
+services:
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'users-ds'
+      MYSQL_ROOT_PASSWORD: 'andreea2002!'
+    ports:
+      - "3307:3306"
+    volumes:
+      - my-db:/var/lib/mysql
+
+  db2:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'device2-db'
+      MYSQL_ROOT_PASSWORD: 'andreea2002!'
+    ports:
+      - "3308:3306"
+    volumes:
+      - device2-db:/var/lib/mysql
+
+  db3:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'monitoring-db'
+      MYSQL_ROOT_PASSWORD: 'andreea2002!'
+    ports:
+      - "3309:3306"
+    volumes:
+      - monitoring-db:/var/lib/mysql
+
+  spring-demo:
+    image: assignment1_users
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_IP=db
+      - DB_PORT=3306
+      - DB_DBNAME=users-ds
+      - DB_USER=root
+      - DB_PASSWORD=andreea2002!
+
+  spring-demo2:
+    image: assignment1_devices
+    ports:
+      - "8082:8082"
+    environment:
+      - DB_IP=db2
+      - DB_PORT=3306
+      - DB_DBNAME=device2-db
+      - DB_USER=root
+      - DB_PASSWORD=andreea2002!
+
+  rabbit_mq:
+    container_name: "rabbit_mq"
+    image: rabbitmq:3-management
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    ports:
+      - '5672:5672'
+      - '15674:15672'
+
+  spring-demo-3:
+    image: assignment1_monitoring
+    ports:
+      - "8081:8081"
+    environment:
+      - DB_IP=db3
+      - DB_PORT=3306
+      - DB_DBNAME=monitoring-db
+      - DB_USER=root
+      - DB_PASSWORD=andreea2002!
+
+  spring-demo4:
+      image: assignment1_chat
+      ports:
+        - "8084:8084"
+  frontend:
+    image: assignment1_fe
+    ports:
+      - "3000:3000"  
+
+volumes:
+  my-db:
+  device2-db:
+  monitoring-db:

@@ -1,0 +1,64 @@
+/* LoginPage.css */
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('../commons/images/energynice.png');
+    background-size: cover;
+    background-repeat: repeat;
+    background-position: center;
+    font-family: sans-serif;
+    height: 100vh; /* Set the height of the body to 100% of the viewport height */
+}
+
+.container {
+    max-width: 300px; /* Make it more narrow */
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f4f4f4;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px; /* Add space between containers */
+}
+
+h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #007bff; /* Add color */
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Add space between the last field and the buttons */
+form > div:last-child {
+    margin-bottom: 10px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px; /* Add space between the buttons and the last field */
+}
+
+button:hover {
+    background-color: #0056b3;
+}
